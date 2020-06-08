@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 class TaskModel(models.Model):
@@ -19,3 +20,9 @@ class TaskModel(models.Model):
 
     def __str__(self):
         return self.description
+
+    def is_overdue(self) -> bool:
+        return not self.is_done and timezone.now() >= self.schedule
+
+    is_overdue.boolean = True
+    is_overdue.short_description = "atrasada"
