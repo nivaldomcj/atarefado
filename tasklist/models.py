@@ -8,6 +8,7 @@ class TaskModel(models.Model):
     """
 
     class Meta:
+        db_table = "task"
         verbose_name = "tarefa"
         verbose_name_plural = "tarefas"
 
