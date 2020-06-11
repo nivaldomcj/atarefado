@@ -4,11 +4,16 @@ from rest_framework.routers import DefaultRouter
 
 from tasklist import views
 
+# API routes
 router = DefaultRouter()
-router.register('users', views.UserViewSet)
-router.register('notifications', views.NotificationViewSet,
+router.register('users',
+                views.UserViewSet,
+                basename='users')
+router.register('notifications',
+                views.NotificationViewSet,
                 basename='notifications')
-router.register('tasks', views.TaskViewSet,
+router.register('tasks',
+                views.TaskViewSet,
                 basename='tasks')
 
 urlpatterns = [
