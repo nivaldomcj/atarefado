@@ -1,0 +1,9 @@
+{% extends "rest_framework/base.html" %}
+
+<title>{% block title %}{% if name %}{{ name }} – {% endif %}Atarefado: REST API{% endblock %}</title>
+
+{% block branding %}
+    <a class='navbar-brand' rel="nofollow">
+        Atarefado: REST API
+    </a>
+{% endblock %}
