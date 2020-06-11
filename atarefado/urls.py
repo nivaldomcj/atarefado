@@ -4,7 +4,7 @@ from rest_framework.routers import SimpleRouter
 
 from tasklist import views
 
-# API routes
+# Register routes for API
 router = SimpleRouter()
 router.register('users',
                 views.UserViewSet,
@@ -17,12 +17,9 @@ router.register('tasks',
                 basename='tasks')
 
 urlpatterns = [
-    # API Urls
-    path('', include(router.urls)),
-
-    # API Authentication
-    path('api-auth/', include('rest_framework.urls')),
-
     # Administrator Panel
-    path('admin/', admin.site.urls),
+    path('', admin.site.urls),
+
+    # API Routes
+    path('api/', include(router.urls)),
 ]
