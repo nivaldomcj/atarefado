@@ -4,8 +4,8 @@ from tasklist.models import NotificationModel
 
 
 class TaskAdmin(admin.ModelAdmin):
-    search_fields = ('description', 'user')
-    list_display = ('description', 'user', 'due_date', 'is_done', 'is_overdue')
+    search_fields = ('title', 'user')
+    list_display = ('title', 'user', 'due_date', 'is_done', 'is_overdue')
     list_filter = ('due_date', 'user')
 
 

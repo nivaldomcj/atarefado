@@ -37,7 +37,6 @@ class TaskModel(models.Model):
                              on_delete=models.CASCADE,
                              verbose_name='usuário')
     title = models.CharField(max_length=128, verbose_name='título')
-    description = models.TextField(max_length=256, verbose_name='descrição')
     due_date = models.DateTimeField(verbose_name='vencimento')
     is_done = models.BooleanField(default=False, verbose_name='concluída')
 

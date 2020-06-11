@@ -23,7 +23,7 @@ class NotificationSerializer(serializers.ModelSerializer):
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = TaskModel
-        fields = ['id', 'user', 'title', 'description', 'due_date', 'is_done']
+        fields = ['id', 'user', 'title', 'due_date', 'is_done']
 
 
 class TaskUserSerializer(serializers.ModelSerializer):
@@ -31,4 +31,4 @@ class TaskUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TaskModel
-        fields = ['id', 'user', 'title', 'description', 'due_date', 'is_done']
+        fields = ['id', 'user', 'title', 'due_date', 'is_done']
