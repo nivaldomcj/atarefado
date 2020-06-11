@@ -6,6 +6,8 @@ from tasklist import views
 
 router = DefaultRouter()
 router.register('users', views.UserViewSet)
+router.register('notifications', views.NotificationViewSet,
+                basename='notifications')
 
 urlpatterns = [
     # API Urls
