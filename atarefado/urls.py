@@ -1,11 +1,11 @@
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework.routers import SimpleRouter
+from rest_framework.routers import DefaultRouter
 
 from tasklist import views
 
 # Register routes for API
-router = SimpleRouter()
+router = DefaultRouter()
 router.register('users',
                 views.UserViewSet,
                 basename='users')
@@ -22,4 +22,7 @@ urlpatterns = [
 
     # API Routes
     path('api/', include(router.urls)),
+
+    # API Authentication
+    path('api-auth/',  include('rest_framework.urls')),
 ]
