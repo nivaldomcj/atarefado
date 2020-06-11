@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tasklist.apps.TasklistConfig',
     'rest_framework',
+    'django_crontab',
 ]
 
 REST_FRAMEWORK = {
@@ -48,6 +49,10 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ]
 }
+
+CRONJOBS = [
+    ('0 7 * * *', 'tasklist.cron.save_today_tasks_notification'),
+]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
