@@ -1,10 +1,11 @@
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework import permissions
+from rest_framework.response import Response
 
 from tasklist.serializers import (UserSerializer,
                                   NotificationSerializer,
-                                  TaskAdminSerializer,
+                                  TaskSerializer,
                                   TaskUserSerializer)
 from tasklist.models import NotificationModel, TaskModel
 
@@ -24,21 +25,32 @@ class NotificationViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class TaskViewSet(viewsets.ModelViewSet):
+    serializer_class = TaskSerializer
+
+    def list(self, request, *args, **kwargs):
+        # When listing, return tasks only that belongs to logged user
+        queryset = TaskModel.objects.filter(user=request.user)
+        serializer = TaskSerializer(queryset, many=True)
+        return Response(serializer.data)
 
     def get_queryset(self):
-        # Only tasks for current user will be displayed
-        return TaskModel.objects.filter(user=self.request.user)
+        # When querying, return tasks only that belongs to logged user
+        # Except if is a administrator logged in
+        if not self.request.user.is_superuser:
+            return TaskModel.objects.filter(user=self.request.user)
+
+        return TaskModel.objects.all()
 
     def perform_create(self, serializer):
-        # When a task is created, should be assigned to the logged user
-        # Except when is a administrator creating it, he can do for everyone
+        # When creating, assign it to logged user
+        # Except when is a administrator creating it
         if not self.request.user.is_superuser:
             serializer.save(user=self.request.user)
         else:
             serializer.save()
 
     def get_serializer_class(self):
+        # Administrators can see/edit all fields, but user not
         if self.request.user.is_superuser:
-            return TaskAdminSerializer
-
+            return TaskSerializer
         return TaskUserSerializer
