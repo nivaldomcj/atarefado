@@ -20,16 +20,15 @@ class NotificationSerializer(serializers.ModelSerializer):
         fields = ['id', 'user', 'text', 'sent_date', 'was_sent']
 
 
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TaskModel
+        fields = ['id', 'user', 'title', 'description', 'due_date', 'is_done']
+
+
 class TaskUserSerializer(serializers.ModelSerializer):
     user = serializers.ReadOnlyField(source='user.username')
 
     class Meta:
         model = TaskModel
         fields = ['id', 'user', 'title', 'description', 'due_date', 'is_done']
-
-
-class TaskAdminSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TaskModel
-        fields = ['id', 'user',
-                  'title', 'description', 'due_date', 'is_done']
