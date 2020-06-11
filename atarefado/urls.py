@@ -8,6 +8,8 @@ router = DefaultRouter()
 router.register('users', views.UserViewSet)
 router.register('notifications', views.NotificationViewSet,
                 basename='notifications')
+router.register('tasks', views.TaskViewSet,
+                basename='tasks')
 
 urlpatterns = [
     # API Urls
