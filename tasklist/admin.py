@@ -17,3 +17,4 @@ class NotificationAdmin(admin.ModelAdmin):
 
 admin.site.register(TaskModel, TaskAdmin)
 admin.site.register(NotificationModel, NotificationAdmin)
+admin.site.site_header = "Atarefado: Administração"
