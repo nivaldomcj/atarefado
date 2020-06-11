@@ -34,7 +34,7 @@ class TaskModel(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="usuário")
     title = models.CharField(max_length=128, verbose_name="título")
-    description = models.TextField(max_length=128, verbose_name="descrição")
+    description = models.TextField(max_length=256, verbose_name="descrição")
     due_date = models.DateTimeField(verbose_name="vencimento")
     is_done = models.BooleanField(verbose_name="concluída")
 
