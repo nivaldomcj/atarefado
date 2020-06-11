@@ -4,10 +4,14 @@ from tasklist.models import NotificationModel, TaskModel
 
 
 class UserSerializer(serializers.ModelSerializer):
+    tasks = serializers.HyperlinkedRelatedField(many=True,
+                                                view_name='tasks-detail',
+                                                read_only=True)
+
     class Meta:
         model = User
         fields = ['id', 'username', 'is_superuser', 'is_staff',
-                  'date_joined', 'last_login']
+                  'date_joined', 'last_login', 'tasks']
 
 
 class NotificationSerializer(serializers.ModelSerializer):

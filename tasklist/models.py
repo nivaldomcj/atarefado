@@ -33,7 +33,8 @@ class TaskModel(models.Model):
         verbose_name = 'tarefa'
         verbose_name_plural = 'tarefas'
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE,
+    user = models.ForeignKey(User, related_name='tasks',
+                             on_delete=models.CASCADE,
                              verbose_name='usuário')
     title = models.CharField(max_length=128, verbose_name='título')
     description = models.TextField(max_length=256, verbose_name='descrição')
