@@ -41,7 +41,7 @@ class TaskModel(models.Model):
     is_done = models.BooleanField(default=False, verbose_name='concluída')
 
     def __str__(self):
-        return self.description
+        return self.title
 
     def is_overdue(self) -> bool:
         return not self.is_done and timezone.now() >= self.due_date
